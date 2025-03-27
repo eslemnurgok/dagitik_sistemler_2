@@ -1,0 +1,10 @@
+services:
+  mpi-node:
+    image: my-mpi-image
+    deploy:
+      replicas: 3  # Birden fazla düğüm istiyorsan container_name kullanma
+    networks:
+      - mpi_network
+
+networks:
+  mpi_network:
