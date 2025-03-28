@@ -1,7 +1,5 @@
 Dağıtık Sistemler Projesi
-
-Bu proje, Docker kullanarak birden fazla düğümlü dağıtık mimari kurmayı, MPI ile düğümler arasında büyük veri paylaşımını yapmayı ve OpenMP ile her düğümün kendi içinde çok
-çekirdekli paralel işlem yapmasını sağlar. Proje, veri işleme için farklı düğümlerde parçalı hesaplama yapmayı hedefler.
+Bu proje, Docker kullanarak birden fazla düğümlü dağıtık mimari kurmayı, MPI ile düğümler arasında büyük veri paylaşımını yapmayı ve OpenMP ile her düğümün kendi içinde çok çekirdekli paralel işlem yapmasını sağlar. Proje, veri işleme için farklı düğümlerde parçalı hesaplama yapmayı hedefler.
 
 İçerik
 Dağıtık Mimariler: Docker ve MPI kullanarak çok düğümlü sistemlerde dağıtık hesaplama.
@@ -24,22 +22,26 @@ OpenMP (Open Multi-Processing)
 Ubuntu 22.04 (veya uyumlu bir Linux dağıtımı)
 
 Kurulum
-1. Docker ve Docker Compose Kurulumu
+Docker ve Docker Compose Kurulumu
 Eğer Docker yüklü değilse, Docker'ın resmi sitesinden Docker'ı indirip kurun. Docker Compose, genellikle Docker ile birlikte gelir, ancak ayrıca buradan kurulum yapılabilir.
 
-2. Projeyi Klonlayın
+Projeyi Klonlayın
 Projeyi bilgisayarınıza klonlamak için şu komutu kullanın:
 
-
+bash
+Kopyala
+Düzenle
 git clone git@github.com:eslemnurgok/dagitik_sistemler_2.git
-3. Docker Container'larını Başlatın
+Docker Container'larını Başlatın
 Projenin içinde bulunduğunuz dizinde, Docker container'larını başlatmak için şu komutu kullanın:
 
-
+bash
+Kopyala
+Düzenle
 docker-compose up --build
 Bu komut, tüm bağımlılıkları indirip gerekli container'ları oluşturur ve başlatır.
 
-4. Projeyi Çalıştırın
+Projeyi Çalıştırın
 Projeyi başarıyla başlattıktan sonra, paralel hesaplamalar yapılmaya başlanacaktır. Docker container'larında MPI ve OpenMP kullanarak işlemler yürütülecektir.
 
 Proje Yapısı
@@ -67,11 +69,7 @@ Bir pull request oluşturun.
 Lisans
 Bu proje MIT Lisansı ile lisanslanmıştır.
 
-
-
-
 MPI ve OpenMP Performans Karşılaştırması
-
 MPI (Message Passing Interface)
 MPI, farklı düğümler arasında veri iletimi için kullanılan bir protokoldür. Düğümler arasındaki veri paylaşımı ve senkronizasyonu için kullanılır. Bu, özellikle çok düğümlü sistemlerde büyük veri setlerinin işlenmesinde verimli olmasını sağlar.
 
@@ -104,23 +102,21 @@ Sınırlı ölçeklenebilirlik: OpenMP, sistemin fiziksel çekirdek sayısıyla 
 
 Performans Farkları ve Karşılaştırma
 Çoklu Düğümler Arasında Veri Paylaşımı:
-MPI, çok düğümlü sistemlerde verimli veri paylaşımı sağlar. Düğümler arasındaki iletişim OpenMP'ye göre daha yavaş olsa da, büyük ölçekli dağıtık sistemlerde avantajlıdır.
+MPI: Çok düğümlü sistemlerde verimli veri paylaşımı sağlar. Düğümler arasındaki iletişim OpenMP'ye göre daha yavaş olsa da, büyük ölçekli dağıtık sistemlerde avantajlıdır.
 
-OpenMP, yalnızca bir makine üzerinde çalıştığı için, düğümler arası iletişim gerektiren durumlarda etkisizdir.
+OpenMP: Sadece bir makine üzerinde çalıştığı için, düğümler arası iletişim gerektiren durumlarda etkisizdir.
 
 Hesaplama Performansı:
-OpenMP, tek bir makinede çok çekirdekli işlemcilerde paralel hesaplamayı optimize eder. Eğer işlemci çok çekirdekli ise, OpenMP daha yüksek performans gösterebilir.
+OpenMP: Tek bir makinede çok çekirdekli işlemcilerde paralel hesaplamayı optimize eder. Eğer işlemci çok çekirdekli ise, OpenMP daha yüksek performans gösterebilir.
 
-MPI ise, çok sayıda düğüm kullanarak paralel hesaplama yapabilir ve büyük veri setlerini dağıtarak işlem süresini kısaltabilir. Ancak, düğümler arasındaki iletişim ve veri paylaşımının maliyeti göz önünde bulundurulduğunda, performans kaybı yaşanabilir.
+MPI: Çok sayıda düğüm kullanarak paralel hesaplama yapabilir ve büyük veri setlerini dağıtarak işlem süresini kısaltabilir. Ancak, düğümler arasındaki iletişim ve veri paylaşımının maliyeti göz önünde bulundurulduğunda, performans kaybı yaşanabilir.
 
 Ölçeklenebilirlik:
-MPI, daha büyük sistemlerde yüksek ölçeklenebilirlik sunar. Birçok düğüm ekleyerek performansı artırabilir.
+MPI: Daha büyük sistemlerde yüksek ölçeklenebilirlik sunar. Birçok düğüm ekleyerek performansı artırabilir.
 
-OpenMP, fiziksel çekirdek sayısı ile sınırlıdır ve bu nedenle sınırlı ölçeklenebilirlik sunar.
+OpenMP: Fiziksel çekirdek sayısı ile sınırlıdır ve bu nedenle sınırlı ölçeklenebilirlik sunar.
 
 Genel Sonuç:
-MPI, büyük ve dağıtık sistemlerdeki projeler için en iyi tercihtir, çünkü birden fazla düğümle veri paylaşımı ve paralel işlem yapabilir. Ancak, yüksek iletişim maliyetleri ve karmaşık programlama gerekebilir.
+MPI: Büyük ve dağıtık sistemlerdeki projeler için en iyi tercihtir, çünkü birden fazla düğümle veri paylaşımı ve paralel işlem yapabilir. Ancak, yüksek iletişim maliyetleri ve karmaşık programlama gerekebilir.
 
-OpenMP, çok çekirdekli işlemcilerde çalışarak paralel işlem yapar ve daha düşük iletişim maliyetleri sunar. Ancak, sadece tek bir makinede çalışabildiğinden, büyük dağıtık sistemler için uygun değildir.
-
-
+OpenMP: Çok çekirdekli işlemcilerde çalışarak paralel işlem yapar ve daha düşük iletişim maliyetleri sunar. Ancak, sadece tek bir makinede çalışabildiğinden, büyük dağıtık sistemler için uygun değildir.
