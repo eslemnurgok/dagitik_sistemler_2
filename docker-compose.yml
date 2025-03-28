@@ -1,10 +1,13 @@
+version: "3"
 services:
-  mpi-node:
-    image: my-mpi-image
+  mpi_cluster:
+    image: openmp-mpi
+    build: .
     deploy:
-      replicas: 3  # Birden fazla düğüm istiyorsan container_name kullanma
+      replicas: 4
     networks:
       - mpi_network
 
 networks:
   mpi_network:
+    driver: bridge

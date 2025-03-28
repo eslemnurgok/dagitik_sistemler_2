@@ -1,19 +1,21 @@
-# Ubuntu tabanlı bir görüntü kullanıyoruz
-FROM ubuntu:22.04  
+# OpenMPI ve OpenMP içeren bir temel imaj kullan
+FROM ubuntu:latest
 
-# Gerekli paketleri güncelliyoruz
+# Gerekli bağımlılıkları yükle
 RUN apt-get update && apt-get install -y \
-    mpich \
-    libomp-dev \
-    build-essential  
+    build-essential \
+    openmpi-bin \
+    libopenmpi-dev \
+    libomp-dev
 
-# Çalışma dizinini oluşturuyoruz
-WORKDIR /app  
+# Çalışma dizini oluştur
+WORKDIR /app
 
-# Paralel programlama kodunu konteyner içine kopyalıyoruz
-COPY mpi_openmp_program.c /app/mpi_openmp_program.c  
+# Kod dosyalarını konteynere kopyala
+COPY parallel_processing.c .
 
-# Programı derliyoruz (Hem MPI hem OpenMP kullanarak)
-RUN mpicc -fopenmp mpi_openmp_program.c -o mpi_openmp_program  
+# Kodu derle (OpenMP ve MPI desteği ile)
+RUN mpicc -fopenmp parallel_processing.c -o parallel_processing.out
 
-CMD ["mpirun", "-np", "4", "./mpi_openmp_program"]
+# Varsayılan komut
+CMD ["mpirun", "--allow-run-as-root", "-np", "4", "./parallel_processing.out"]
